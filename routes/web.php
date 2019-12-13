@@ -14,4 +14,4 @@
 Route::get('/', 'LocationsController@index');
 
 route::resource('/location', 'LocationsController');
-Route::get('generatepdf', 'PdfController@generatePDF');
+// Route::get('generatepdf', 'PdfController@generatePDF');
