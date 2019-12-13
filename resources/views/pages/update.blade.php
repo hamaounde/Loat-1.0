@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <form class="" method="PATCH" action="{{Route('location.store', $locations->id) }}" enctype="multipart/form-data">
+    <form class="" method="PATCH" action="location/{{$locations->id}}" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <h3 class="col-12" style="background-color:green">Entreprise</h3>
@@ -117,7 +117,7 @@
     </form>
 @endsection
 
-{{-- <script>
+<script>
     function myFunction() {
         var x=0, n=1, y=0, z=0, k=0, j=1;
         n = document.getElementById('nbreVehicule').value; //nombre de vehicule
@@ -131,4 +131,4 @@
         document.getElementById("tva").value = y*t;
         document.getElementById("montantTTC").value = z*t;
     }
-</script> --}}
+</script>

@@ -19,7 +19,7 @@ class LocationsController extends Controller
     public function index()
     {
         //
-        $locations = location::orderBy('id', 'asc')->paginate(10);
+        $locations = location::orderBy('id', 'desc')->paginate(10);
         return view('pages.index', compact('locations'));
     }
 
@@ -252,7 +252,7 @@ class LocationsController extends Controller
         //
         $location = location::find($id);
 
-       return $request->interlocuteur;
+        return $request->interlocuteur;
 
         $location->interlocuteur = $request->interlocuteur;
         $location->mobile = $request->mobile;

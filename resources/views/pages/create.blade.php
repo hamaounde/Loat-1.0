@@ -3,22 +3,22 @@
     <form class="" method="POST" action="{{Route('location.store') }}" enctype="multipart/form-data">
     @csrf
         <div class="row">
-            <h3 class="col-12" style="background-color:green">Entreprise</h3>
-            <div class="col-4 bg-secondary">
+            <h3 class="col-12" style="background-color:#9ccc65">Entreprise</h3>
+            <div class="col-4">
                 <div class="form-group">
                     <label for="datecourrent">Interlocuteur  : </label>
                         <input type="text" name="interlocuteur" class="form-control" value="Mohamadou Awalou Saliou" />
                 </div>
             </div>
 
-            <div class="col-4 bg-secondary">
+            <div class="col-4">
                 <div class="form-group">
                     <label for="datecourrent">Mobile   : </label>
                     <input type="text" name="mobile" class="form-control" value="699836662" />
                 </div>
             </div>
 
-            <div class="col-4 bg-secondary">
+            <div class="col-4">
                 <div class="form-group">
                     <label for="datecourrent">Email   : </label>
                         <input type="email" name="email" class="form-control" value="mohamadou78@yahoo.fr "/>
@@ -27,15 +27,15 @@
         </div>
 
         <div class="row">
-            <h1 class="col-12 justify-content-center" style="background-color:green; margin-top:20px; ">Client</h1>
-            <div class="form-group col-12 bg-secondary" style="padding-bottom:20px">
+            <h1 class="col-12 justify-content-center" style="background-color:#9ccc65; margin-top:20px; ">Client</h1>
+            <div class="form-group col-12 " style="padding-bottom:20px">
                 <label for="exampleInputEmail1">Client</label>
                 <input type="text" name="client" class="form-control" id="exampleInputEmail1">
             </div>
         </div>
 
         <div class="row">
-            <h1 class="col-12 justify-content-center" style="background-color:green; margin-top:20px; ">Location</h1>
+            <h1 class="col-12 justify-content-center" style="background-color:#9ccc65; margin-top:20px; ">Location</h1>
             <div class="col-4 form-group">
                 <label for="exampleInputEmail1">Itinéraire (départ)</label>
                 <input type="text" name="depart" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="row">
-            <h1 class="col-12 justify-content-center" style="background-color:green; margin-top:20px; ">Montant</h1>
+            <h1 class="col-12 justify-content-center" style="background-color:#9ccc65; margin-top:20px; ">Montant</h1>
             <div class="col-3 form-group">
                 <label for="ht">Selectioner:</label>
                 <select class="form-control" name="taxe" id="taxe" oninput="myFunction()">
@@ -94,14 +94,14 @@
                 <label for="ht">Montant net TTC: </label>
                 <input type="text" name="ttc" class="form-control" id="montantTTC" value=""/>
             </div>
-            <div class="col-6 form-group">
+            <div class="col-12 form-group">
                 <label for="lettre">Total net en lettres: </label>
-                <textarea name="totalNetLettre" id="totalNetLettre" cols="41" rows="4"></textarea>
+                <input name="totalNetLettre" class="form-control"  id="totalNetLettre"/>
             </div>
         </div>
 
         <div class="row">
-            <h3  class="col-12 justify-content-center" style="background-color:green; margin-top:20px; ">Caracteristique du vehicule</h3>
+            <h3  class="col-12 justify-content-center" style="background-color:#9ccc65; margin-top:20px; ">Caracteristique du vehicule</h3>
             <div class="col-12 form-group">
                     <label for="datecourrent">Nombre de place : </label>
                     <input type="number" name="nbrePlace" class="form-control"  value="<?php echo 49; ?>" />
