@@ -1,25 +1,27 @@
 @extends('layouts.app')
 @section('content')
 
-    <form class="" method="PATCH" action="location/{{$locations->id}}" enctype="multipart/form-data">
+    <form class="" method="POST" action="/location/{{$locations->id}}" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="_method" value="put">
+        <input type="hidden" name="designation" value="{{$locations->designation}}">
         <div class="row">
             <h3 class="col-12" style="background-color:green">Entreprise</h3>
-            <div class="col-4 bg-secondary">
+            <div class="col-4">
                 <div class="form-group">
                     <label for="datecourrent">Interlocuteur  : </label>
                         <input type="text" name="interlocuteur" class="form-control" value="Mohamadou Awalou Saliou" />
                 </div>
             </div>
 
-            <div class="col-4 bg-secondary">
+            <div class="col-4">
                 <div class="form-group">
                     <label for="datecourrent">Mobile   : </label>
                     <input type="text" name="mobile" class="form-control" value="699836662" />
                 </div>
             </div>
 
-            <div class="col-4 bg-secondary">
+            <div class="col-4">
                 <div class="form-group">
                     <label for="datecourrent">Email   : </label>
                         <input type="email" name="email" class="form-control" value="mohamadou78@yahoo.fr "/>
@@ -29,7 +31,7 @@
 
         <div class="row">
             <h1 class="col-12 justify-content-center" style="background-color:green; margin-top:20px; ">Client</h1>
-            <div class="form-group col-12 bg-secondary" style="padding-bottom:20px">
+            <div class="form-group col-12" style="padding-bottom:20px">
                 <label for="exampleInputEmail1">Client</label>
                 <input type="text" name="client" class="form-control" id="exampleInputEmail1" value="{{$locations->client}}">
             </div>
@@ -85,15 +87,15 @@
             </div>
             <div class="col-3 form-group">
                 <label for="ht">Montant HT: </label>
-                <input type="number" name="ht" class="form-control" id="montantHT" value=""/>
+                <input type="number" name="ht" class="form-control" id="montantHT" value="" required/>
             </div>
             <div class="col-3 form-group">
                 <label for="ht">TVA 19.25% : </label>
-                <input type="text" name="tva" class="form-control" id="tva" value=""/>
+                <input type="text" name="tva" class="form-control" id="tva" value="" required/>
             </div>
             <div class="col-3 form-group">
                 <label for="ht">Montant net TTC: </label>
-                <input type="text" name="ttc" class="form-control" id="montantTTC" value=""/>
+                <input type="text" name="ttc" class="form-control" id="montantTTC" value="" required/>
             </div>
             <div class="col-12 form-group">
                 <label for="totalNetLettre">Total net en lettres: </label>
@@ -103,9 +105,23 @@
 
         <div class="row">
             <h3  class="col-12 justify-content-center" style="background-color:green; margin-top:20px; ">Caracteristique du vehicule</h3>
-            <div class="col-12 form-group">
+            <div class="col-4 form-group">
                     <label for="datecourrent">Nombre de place : </label>
-                    <input type="number" name="nbrePlace" class="form-control"  value="{{$locations->nbrePlace}}" />
+                    <input type="number" name="nbrePlace" class="form-control"  value="<?php echo 49; ?>" />
+            </div>
+            <div class="col-4 form-group">
+                <label for="datecourrent">DVD</label>
+                <select class="form-control" name="dvd" id="dvd">
+                    <option  value="OUI" selected>OUI</option>
+                    <option value="NON">NON</option>
+                </select>
+            </div>
+            <div class="col-4 form-group">
+                <label for="datecourrent">Climatiseur </label>
+                <select class="form-control" name="climatiseur" id="climatiseur">
+                    <option  value="OUI" selected>OUI</option>
+                    <option value="NON">NON</option>
+                </select>
             </div>
         </div>
         <div class="col-12 form-group">

@@ -3,53 +3,53 @@
     <form class="" method="POST" action="{{Route('location.store') }}" enctype="multipart/form-data">
     @csrf
         <div class="row">
-            <h3 class="col-12" style="background-color:#9ccc65">Entreprise</h3>
+            <h3 class="col-12" style="background-color:green;">Entreprise</h3>
             <div class="col-4">
                 <div class="form-group">
                     <label for="datecourrent">Interlocuteur  : </label>
-                        <input type="text" name="interlocuteur" class="form-control" value="Mohamadou Awalou Saliou" />
+                        <input type="text" name="interlocuteur" class="form-control" value="Mohamadou Awalou Saliou" required/>
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="form-group">
                     <label for="datecourrent">Mobile   : </label>
-                    <input type="text" name="mobile" class="form-control" value="699836662" />
+                    <input type="text" name="mobile" class="form-control" value="699836662" required/>
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="form-group">
                     <label for="datecourrent">Email   : </label>
-                        <input type="email" name="email" class="form-control" value="mohamadou78@yahoo.fr "/>
+                        <input type="email" name="email" class="form-control" value="mohamadou78@yahoo.fr " required/>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <h1 class="col-12 justify-content-center" style="background-color:#9ccc65; margin-top:20px; ">Client</h1>
+            <h1 class="col-12 justify-content-center" style="background-color:green; margin-top:20px; ">Client</h1>
             <div class="form-group col-12 " style="padding-bottom:20px">
                 <label for="exampleInputEmail1">Client</label>
-                <input type="text" name="client" class="form-control" id="exampleInputEmail1">
+                <input type="text" name="client" class="form-control" id="exampleInputEmail1" required>
             </div>
         </div>
 
         <div class="row">
-            <h1 class="col-12 justify-content-center" style="background-color:#9ccc65; margin-top:20px; ">Location</h1>
+            <h1 class="col-12 justify-content-center" style="background-color:green; margin-top:20px; ">Location</h1>
             <div class="col-4 form-group">
                 <label for="exampleInputEmail1">Itinéraire (départ)</label>
-                <input type="text" name="depart" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" name="depart" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
             </div>
             <div class="col-4 form-group">
                 <label for="exampleInputEmail1">Itinéraire (destination)</label>
-                <input type="text" name="destination" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="Intra-ville">
+                <input type="text" name="destination" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="Intra-ville" required>
             </div>
             <div class="col-4 form-group">
-                <label for="exampleInputEmail1">heure départ</label>
-                <input type="time" name="heureDepart" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <label for="exampleInputEmail1">Heure départ</label>
+                <input type="time" name="heureDepart" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
             </div>
-            <div class="col-4 form-group">
-                <label for="exampleInputEmail1">heure départ</label>
+            <div class="col-4 form-group" hidden>
+                <label for="exampleInputEmail1">Heure Arrivé</label>
                 <input type="time" name="heureArrive" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="col-4 form-group">
@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="row">
-            <h1 class="col-12 justify-content-center" style="background-color:#9ccc65; margin-top:20px; ">Montant</h1>
+            <h1 class="col-12 justify-content-center" style="background-color:green; margin-top:20px; ">Montant</h1>
             <div class="col-3 form-group">
                 <label for="ht">Selectioner:</label>
                 <select class="form-control" name="taxe" id="taxe" oninput="myFunction()">
@@ -101,12 +101,27 @@
         </div>
 
         <div class="row">
-            <h3  class="col-12 justify-content-center" style="background-color:#9ccc65; margin-top:20px; ">Caracteristique du vehicule</h3>
-            <div class="col-12 form-group">
+            <h3  class="col-12 justify-content-center" style="background-color:green; margin-top:20px; ">Caracteristique du vehicule</h3>
+            <div class="col-4 form-group">
                     <label for="datecourrent">Nombre de place : </label>
                     <input type="number" name="nbrePlace" class="form-control"  value="<?php echo 49; ?>" />
             </div>
+            <div class="col-4 form-group">
+                <label for="datecourrent">DVD</label>
+                <select class="form-control" name="dvd" id="dvd">
+                    <option  value="OUI" selected>OUI</option>
+                    <option value="NON">NON</option>
+                </select>
+            </div>
+            <div class="col-4 form-group">
+                <label for="datecourrent">Climatiseur </label>
+                <select class="form-control" name="climatiseur" id="climatiseur">
+                    <option  value="OUI" selected>OUI</option>
+                    <option value="NON">NON</option>
+                </select>
+            </div>
         </div>
+
         <div class="col-12 form-group">
             <div class="clearfix" style="">
                 <button type="submit" class="btn btn-sm btn-success align-content-end">Enregistrer</button>

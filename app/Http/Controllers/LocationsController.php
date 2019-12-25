@@ -16,8 +16,7 @@ class LocationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         //
         $locations = location::orderBy('id', 'desc')->paginate(10);
         return view('pages.index', compact('locations'));
@@ -28,8 +27,7 @@ class LocationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
         return view('pages.create');
     }
@@ -65,7 +63,8 @@ class LocationsController extends Controller
         $periodeDebut = $request->periodeDebut;
         $periodeFin = $request->periodeFin;
         $forfait = $request->forfait;
-
+        $dvd =  $request->dvd;
+        $climatiseur = $request->climatiseur;
 
         $ht = $request->ht;
         $tva =  $request->tva;
@@ -88,11 +87,11 @@ class LocationsController extends Controller
         $month = date('m');
         $year = date('y');
 
-        $sucess = $this->enregistrer($numero_courant, $date_facture, $departement, $interlocuteur, $mobile, $email, $client,  $periodeDebut, $periodeFin, $designation, $depart, $destination, $quantite, $jour, $forfait, $ht, $tva, $ttc, $totalNetLettre,  $nbrePlace, $heureDepart, $heureArrive);
+        $sucess = $this->enregistrer($numero_courant, $date_facture, $departement, $interlocuteur, $mobile, $email, $client,  $periodeDebut, $periodeFin, $designation, $depart, $destination, $quantite, $jour, $forfait, $ht, $tva, $ttc, $totalNetLettre,  $nbrePlace, $heureDepart, $heureArrive, $climatiseur, $dvd);
         return redirect('/')->with('success', 'Votre facture est ajoutée');
     }
 
-    private function convert_customer_data_to_html($month, $year, $numero_courant,$date_facture, $departement, $interlocuteur, $mobile, $email, $client,  $periodeDebut, $periodeFin, $designation, $depart, $destination, $quantite, $jour, $forfait, $ht, $tva, $ttc, $totalNetLettre,  $nbrePlace, $heureDepart, $heureArrive){
+    private function convert_customer_data_to_html($month, $year, $numero_courant,$date_facture, $departement, $interlocuteur, $mobile, $email, $client,  $periodeDebut, $periodeFin, $designation, $depart, $destination, $quantite, $jour, $forfait, $ht, $tva, $ttc, $totalNetLettre,  $nbrePlace, $heureDepart, $heureArrive, $climatiseur, $dvd){
 
 
         $total = $forfait * $quantite * $jour;
@@ -107,43 +106,44 @@ class LocationsController extends Controller
                     <div style="margin-top:-35px;background-color:#e0e0e0;"><h5 style="margin-left:600px; ">'. $client. '</h5></div>
                     <table style="width:100%; border: 1px solid black;border-collapse: collapse;">
                     <tr style="padding: 5px;">
-                        <th style="padding: 5px;text-align: left; border: 1px solid black;border-collapse: collapse;">Désignations</th>
-                        <th style="padding: 5px;text-align: left; border: 1px solid black;border-collapse: collapse;">Quantité</th>
-                        <th style="padding: 5px;text-align: left; border: 1px solid black;border-collapse: collapse;">Jour(s)</th>
-                        <th style="padding: 5px;text-align: left; border: 1px solid black;border-collapse: collapse;">Itinéraire</th>
-                        <th style="padding: 5px;text-align: left; border: 1px solid black;border-collapse: collapse;">Période</th>
-                        <th style="padding: 5px;text-align: left; border: 1px solid black;border-collapse: collapse;">Forfait </th>
+                        <th style="padding: 5px;text-align: left; border: 1px solid black;border-collapse: collapse;"> Désignations</th>
+                        <th style="padding: 5px;text-align: left; border: 1px solid black;border-collapse: collapse;"> Quantité</th>
+                        <th style="padding: 5px;text-align: left; border: 1px solid black;border-collapse: collapse;"> Jour(s)</th>
+                        <th style="padding: 5px;text-align: left; border: 1px solid black;border-collapse: collapse;"> Itinéraire</th>
+                        <th style="padding: 5px;text-align: left; border: 1px solid black;border-collapse: collapse;"> Période</th>
+                        <th style="padding: 5px;text-align: left; border: 1px solid black;border-collapse: collapse;"> Forfait </th>
                         <th style="padding: 5px;text-align: left; border: 1px solid black;border-collapse: collapse;">Total</th>
                     </tr>
                     <tr>
-                        <td style="padding: 5px; border: 1px solid black;border-collapse: collapse;">'. $designation.'<br>
+                        <td style="padding: 5px; border: 1px solid black;border-collapse: collapse;">'. $designation.'<br><br>
                             <u>Caractéristiques véhicule </u> <br>
                             -	Confort <br>
-                            -	'. $nbrePlace .'places <br>
-                            -	Climatisation <br>
+                            -	'. $nbrePlace .' places <br>
+                            -	'. $climatiseur.' <br>
                             -	Ceintures de sécurité <br>
-                            -	DVD
+                            -	'.$dvd.'
                         </td>
                         <td style="padding: 5px; border: 1px solid black;border-collapse: collapse;">'. $quantite .'</td>
                         <td style="padding: 5px; border: 1px solid black;border-collapse: collapse;">'.$jour. '</td>
-                        <td style="padding: 5px; border: 1px solid black;border-collapse: collapse;">' .$depart .'<br>' .$destination.'</td>
-                        <td style="padding: 5px; border: 1px solid black;border-collapse: collapse;"> '.$periodeDebut.' <br> '.$periodeFin.' <br> '.$heureDepart.' - '.$heureArrive.' </td>
+                        <td style="padding: 5px; border: 1px solid black;border-collapse: collapse;">' .$depart .'<br>-' .$destination.'</td>
+                        <td style="padding: 5px; border: 1px solid black;border-collapse: collapse;"> '.strtoupper($periodeDebut). ' <br> au <br>'.$periodeFin.' <br> ' .$heureDepart.' </td>
                         <td style="padding: 5px; border: 1px solid black;border-collapse: collapse;">'. $forfait.'</td>
                         <td style="padding: 5px; border: 1px solid black;border-collapse: collapse;">'. $total. '</td>
                     </tr>
                     </table> <br> <br>
                     <ul style="list-style-type:none; border: 1px solid black; width:50%; margin-left:44%">
-                        <li>Montant HT : '.$ht. '</p>
+                        <li style=background-color:#e0e0e0;>Montant HT : '.$ht. '</p>
                         <li>TVA 19.25% :  '.$tva. '</p>
-                        <li>Montant net TTC : '.$ttc.'</p>
+                        <li>Montant net TTC : '.$ttc. '</p>
                     </ul>
                     <h5>Total net en lettres</h5>
-                    <p>Arrêté la présente facture à la somme de '. $totalNetLettre. ' CFA TTC.</p>
+                    <p>Arrêté la présente facture à la somme de <span style="font-weight:bold">' . $totalNetLettre. '</span> FCFA TTC.</p>
                     </table> <br> <br>
                     <ul style="list-style-type:none; border: 1px solid black; width:78%;">
-                        <li>Conditions :</p>
+                        <li style=background-color:#e0e0e0;">Conditions :</p>
                         <li>Règlement avant la prestation : Espèces, chèque, ou virement bancaire. <br>
                         Carburant et péage à la charge de TOURISTIQUE EXPRESS</li>
+                        <li style=background-color:#e0e0e0; height:30px"><br> </li>
                         <li>Compte N° 10002 00031 12211603150 17</li>
                         <li>Banque : SCB</li>
                         <li>Régime d’imposition : REEL</li>
@@ -155,7 +155,7 @@ class LocationsController extends Controller
     }
 
 
-    private function enregistrer($numero_courant, $date_facture, $departement, $interlocuteur, $mobile, $email, $client,  $periodeDebut, $periodeFin, $designation, $depart, $destination, $quantite, $jour, $forfait, $ht, $tva, $ttc, $totalNetLettre,  $nbrePlace, $heureDepart, $heureArrive){
+    private function enregistrer($numero_courant, $date_facture, $departement, $interlocuteur, $mobile, $email, $client,  $periodeDebut, $periodeFin, $designation, $depart, $destination, $quantite, $jour, $forfait, $ht, $tva, $ttc, $totalNetLettre,  $nbrePlace, $heureDepart, $heureArrive, $climatiseur, $dvd){
         $location = new location;
         $location->numero = $numero_courant;
         $location->date_facture = $date_facture;
@@ -179,9 +179,9 @@ class LocationsController extends Controller
         $location->nbrePlace= $nbrePlace;
         $location->heureDepart= $heureDepart;
         $location->heureArrive= $heureArrive;
+        $location->climatiseur= $climatiseur;
+        $location->dvd= $dvd;
         $location->save();
-
-        return 'success';
     }
 
     /**
@@ -220,7 +220,10 @@ class LocationsController extends Controller
             $totalNetLettre = $locations->totalNetLettre,
             $nbrePlace = $locations->nbrePlace,
             $heureDepart = $locations->heureDepart,
-            $heureArrive = $locations->heureArrive
+            $heureArrive = $locations->heureArrive,
+            $climatiseur = $locations->climatiseur,
+            $dvd = $locations->dvd,
+
         ));
         return $pdf->stream();
 
@@ -252,7 +255,7 @@ class LocationsController extends Controller
         //
         $location = location::find($id);
 
-        return $request->interlocuteur;
+        // return  $location->designation = $request->designation;
 
         $location->interlocuteur = $request->interlocuteur;
         $location->mobile = $request->mobile;
@@ -273,9 +276,11 @@ class LocationsController extends Controller
         $location->nbrePlace = $request->nbrePlace;
         $location->heureDepart = $request->heureDepart;
         $location->heureArrive = $request->heureArrive;
+        $location->climatiseur = $request->climatiseur;
+        $location->dvd = $request->dvd;
         $location->save();
-        return 'ok';
-        // return redirect('/')->with('success', 'Votre facture est modifiée');
+
+        return redirect('/')->with('success', 'Votre facture est modifiée');
     }
 
     /**

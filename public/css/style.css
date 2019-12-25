@@ -59,10 +59,6 @@ h6 {
     border-radius: 0 10px 0 0;
 }
 
-.bg-goon {
-    background: rgb(236, 160, 0);
-}
-
 .entete {
     background: url('/img/entete.jpg');
     background-position-x: 0;

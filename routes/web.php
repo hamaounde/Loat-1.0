@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'LocationsController@index');
+// Route::post('/delete', 'LocationsController@delete');
 
 route::resource('/location', 'LocationsController');
 // Route::get('generatepdf', 'PdfController@generatePDF');

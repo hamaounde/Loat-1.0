@@ -15,7 +15,7 @@
     </head>
     <body>
         @include('inc.nav')
-        <main role="main" style="background-color: #bdbdbd; margin-bottom: 20px">
+        <main role="main" style="margin-bottom: 20px; font-size: 17px;">
             <div class="container">
                 @include('inc.messages')
                 @yield('content')

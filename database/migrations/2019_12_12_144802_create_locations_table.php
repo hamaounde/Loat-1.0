@@ -36,7 +36,9 @@ class CreateLocationsTable extends Migration
             $table->string('totalNetLettre', 100);
             $table->integer('nbrePlace');
             $table->string('heureDepart', 10);
-            $table->string('heureArrive', 10);
+            $table->string('heureArrive', 10)->nullable();
+            $table->string('climatiseur', 5)->nullable();
+            $table->string('dvd', 5)->nullable();
             $table->timestamps();
         });
     }

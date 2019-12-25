@@ -11,6 +11,7 @@
     <th scope="col">Période</th>
     <th scope="col">Editer</th>
     <th scope="col">Imprimer</th>
+    <th scope="col">Supprimer</th>
     </tr>
 </thead>
 <tbody>
@@ -24,6 +25,7 @@
                 <td>{{$item->periodeDebut}} <br> {{$item->periodeFin}}</td>
                 <td><a href="/location/{{$item->id}}/edit" >Editer</a></td>
                 <td><a href="/location/{{$item->id}}" target="_blank">Imprimer</a></td>
+                <td><a href="#">Supprimer</a></td>
             </tr>
         @endforeach
     @endif
